@@ -17,48 +17,69 @@
             display: flex;justify-content: center;align-items: center;flex-direction: column
         }
         .wrap {
-            width: 90vw;height: 50vw;
+            position: relative;
+            width: 90vw;
+            height: 50vw;
             display: flex; justify-content: center; align-items: center;
-            color: hsla(0,0%,100%,.5);
+            color: hsla(0,0%,100%,1);
             text-align: center;
             box-shadow: var(--bsh);
-        }
-        .itm {
-            flex: 1 0 0 ;
-            height: 50vw;
-            box-shadow: var(--bsh);
-            transition: 2s all;
-        }
-        .itm:hover {
-            flex: 100% 0 0;
-        }
-        .itm:hover img {
-            object-fit:cover;
-            filter:grayscale(0%);
-        }
-        img {
-            width: 100%;height: 100%;
-            object-fit:cover;
-            filter:grayscale(100%);
-            transition: 2s all;
+            overflow: hidden;
+        
+            .itm {
+
+                flex: 1 0 0 ;
+                height: 50vw;
+                box-shadow: var(--bsh);
+                transition: 2s all;
+                img {
+/*                    display: none;*/
+                    width: 100%;height: 100%;
+                    object-fit:cover;
+                    filter:grayscale(100%);
+                    transition: 2s all;
+                }
+                span {
+                    position: absolute;
+                    background: hsla(0, 0%, 0%, .5);
+                    border-radius: .5rem;
+                    padding: 0 1rem;
+                    left: 50%;translate: -50%;bottom: 1rem;
+                    font: 1.5rem/2rem sans-serif;
+                    opacity: 0;
+                    z-index: 10;
+                    transition: opacity 1.5s linear;
+                }
+            }
+            .itm:hover {
+                flex: 100% 0 0;
+
+            }
+            .itm:hover img {
+                object-fit:cover;
+                filter:grayscale(0%);
+            }
+            .itm:hover span {
+                opacity: 1;
+            }
         }
         
     </style>
 </head>
 <body>
     <div class="wrap">
-        <div class="itm"><img src="./img/felipe-santana-xJkTCbtuqAY-unsplash.jpg" alt="alt"><span></span></div>
-        <div class="itm"><img src="./img/pexels-alexander-ant-4585185.jpg" alt="alt"><span></span></div>
-        <div class="itm"><img src="./img/pexels-francesco-ungaro-1525041.jpg" alt="alt"><span></span></div>
-        <div class="itm"><img src="./img/pexels-pixabay-247819.jpg" alt="alt"><span></span></div>
-        <div class="itm"><img src="./img/pexels-pixabay-235985.jpg" alt="alt"><span></span></div>
+        <div class="itm"><img src="./img/cuir.jpg" alt="alt"><span></span></div>
+        <div class="itm"><img src="./img/splash.jpg" alt="alt"><span></span></div>
+        <div class="itm"><img src="./img/mountain.jpg" alt="alt"><span></span></div>
+        <div class="itm"><img src="./img/learn.jpg" alt="alt"><span></span></div>
+        <div class="itm"><img src="./img/papyrus.jpg" alt="alt"><span></span></div>
         <div class="itm"><img src="./img/brushed_mint.jpg" alt="alt"><span></span></div>
     </div>
    
     <script>
         const wrap = [...document.querySelector('.wrap').children]
         wrap.map(itm=>{
-            itm.onmouseover = () =>itm.innerHTML+= `${itm.firstChild.src}`
+            itm.onmouseover = () =>itm.lastChild.innerHTML=itm.firstChild.src.slice(62,-4)
         })
         
     </script>    
